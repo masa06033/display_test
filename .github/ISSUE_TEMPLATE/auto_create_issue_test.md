@@ -6,7 +6,3 @@ labels: 'check'
 assignees: '' # あとで自動付与するためここでは入れていません
 
 ---
-
-## TODO
-- [ ] todo1
-- [ ] todo2
