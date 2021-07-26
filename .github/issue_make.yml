@@ -1,0 +1,32 @@
+name: Auto create issue
+on:
+  schedule:
+  - cron: '0/15 * * * *'
+
+jobs:
+  auto_create_issue:
+    name: Auto create issue
+    runs-on: self-hosted
+    container:
+      image: ubuntu:latest
+    steps:
+    - name: yesterday's date
+      run: echo "YESTERDAY=$(date '+%Y年%m月' --date '1 day ago')" >> $GITHUB_ENV
+
+    - uses: imjohnbo/extract-issue-template-fields@v0.0.1
+      id: extract
+      with:
+        path: .github/ISSUE_TEMPLATE/auto_create_issue_test.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: check issue
+      uses: imjohnbo/issue-bot@v3
+      with:
+        assignees: "nyanyami"
+        labels: ${{ steps.extract.outputs.body }}
+        title:  ${{ env.YESTERDAY }} チェック用issue
+        body: ${{ steps.extract.outputs.body }}
+        pinned: false
+        close-previous: false
+        linked-comments: false
