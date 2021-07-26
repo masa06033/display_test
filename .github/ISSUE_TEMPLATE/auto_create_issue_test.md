@@ -1,9 +1,8 @@
 ---
 name: auto create issue
 about: auto create issue test
-title: 'issue_test'
+title: '' # あとで自動付与するためここでは入れていません
 labels: 'check'
-assignees: 'masa06033'
-body: 'check'
+assignees: '' # あとで自動付与するためここでは入れていません
 
 ---
