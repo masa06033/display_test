@@ -5,31 +5,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  auto_create_issue:
-    name: Auto create issue
+  build:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
     steps:
-    - name: yesterday's date
-      run: echo "YESTERDAY=$(date '+%Y年%m月' --date '1 day ago')" >> $GITHUB_ENV
-
-    - uses: imjohnbo/extract-issue-template-fields@v0.0.1
+    # Get the title, labels, assignees, and body of the issue template at the path,
+    # .github/ISSUE_TEMPLATE/my_template.md, if available.
+    - uses: imjohnbo/extract-issue-template-fields@v1
       id: extract
       with:
-        path: .github/ISSUE_TEMPLATE/auto_create_issue_test.md
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        path: .github/ISSUE_TEMPLATE/my_template.md
 
-    - name: check issue
-      uses: imjohnbo/issue-bot@v3
-      with:
-        name: "auto create issue"
-        about: "auto create issue"
-        assignees: "nyanyami"
-        labels: ${{ steps.extract.outputs.body }}
-        title:  ${{ env.YESTERDAY }} チェック用issue
-        body: ${{ steps.extract.outputs.body }}
-        pinned: false
-        close-previous: false
-        linked-comments: false
+    # Log outputs of previous step
+    - run: |-
+        echo $ASSIGNEES $LABELS $TITLE $BODY
+      env:
+        ASSIGNEES: ${{ steps.extract.outputs.assignees }}
+        LABELS: ${{ steps.extract.outputs.labels }}
+        TITLE: ${{ steps.extract.outputs.title }}
+        BODY: ${{ steps.extract.outputs.body }}
