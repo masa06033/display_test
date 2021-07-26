@@ -1,7 +1,7 @@
 name: Auto create issue
 on:
   schedule:
-    - cron:  '*/15 * * * *'
+    - cron:  '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -15,15 +15,6 @@ jobs:
       with:
         path: .github/ISSUE_TEMPLATE/auto_create_issue_test.md
 
-    # Log outputs of previous step
-    - run: |-
-        echo $ASSIGNEES $LABELS $TITLE $BODY
-      env:
-        ASSIGNEES: ${{ steps.extract.outputs.assignees }}
-        LABELS: ${{ steps.extract.outputs.labels }}
-        TITLE: ${{ steps.extract.outputs.title }}
-        BODY: ${{ steps.extract.outputs.body }}
-        
     # Create new issue with assignees, labels, title, and body
     - uses: imjohnbo/issue-bot@v3
       with:
