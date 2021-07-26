@@ -1,8 +1,9 @@
 ---
 name: auto create issue
 about: auto create issue test
-title: '' # あとで自動付与するためここでは入れていません
+title: 'issue_test'
 labels: 'check'
-assignees: '' # あとで自動付与するためここでは入れていません
+assignees: 'masaki'
+body: 'check'
 
 ---
