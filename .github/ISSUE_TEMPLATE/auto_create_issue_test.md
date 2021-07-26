@@ -3,7 +3,7 @@ name: auto create issue
 about: auto create issue test
 title: 'issue_test'
 labels: 'check'
-assignees: 'masaki'
+assignees: 'masa06033'
 body: 'check'
 
 ---
