@@ -24,6 +24,8 @@ jobs:
     - name: check issue
       uses: imjohnbo/issue-bot@v3
       with:
+        name: "auto create issue"
+        about: "auto create issue"
         assignees: "nyanyami"
         labels: ${{ steps.extract.outputs.body }}
         title:  ${{ env.YESTERDAY }} チェック用issue
