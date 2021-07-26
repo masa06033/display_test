@@ -23,3 +23,11 @@ jobs:
         LABELS: ${{ steps.extract.outputs.labels }}
         TITLE: ${{ steps.extract.outputs.title }}
         BODY: ${{ steps.extract.outputs.body }}
+        
+    # Create new issue with assignees, labels, title, and body
+    - uses: imjohnbo/issue-bot@v3
+      with:
+        assignees: ${{ steps.extract.outputs.assignees }}
+        labels: ${{ steps.extract.outputs.labels }}
+        title: ${{ steps.extract.outputs.title }}
+        body: ${{ steps.extract.outputs.body }}
