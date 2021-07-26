@@ -1,7 +1,7 @@
 name: Auto create issue
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -17,8 +17,13 @@ jobs:
 
     # Create new issue with assignees, labels, title, and body
     - uses: imjohnbo/issue-bot@v3
-      with:
-        assignees: ${{ steps.extract.outputs.assignees }}
-        labels: ${{ steps.extract.outputs.labels }}
-        title: ${{ steps.extract.outputs.title }}
+      with:        
+        assignees: "masa06033"
+        labels: ${{ steps.extract.outputs.body }}
+        title:  チェック用issue
         body: ${{ steps.extract.outputs.body }}
+        pinned: false
+        close-previous: false
+        linked-comments: false
+        
+        
