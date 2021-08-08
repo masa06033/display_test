@@ -1,3 +1,4 @@
+name: envtest
 on:
   workflow_dispatch:
 
